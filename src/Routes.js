@@ -7,7 +7,7 @@ import {
 import AdminPage from "./components/Admin/AdminPage";
 import AdminRoutes from "./components/Admin/AdminRoutes";
 import UserPage from "./components/UserPage/UserPage";
-import Login from "./components/login";
+import Login from "./components/login/Login";
 const Routes = () => {
   return (
     <>
@@ -17,7 +17,7 @@ const Routes = () => {
           <Route path="/admin" element={<AdminPage />}>
             <Route path=":path" element={<AdminRoutes />} />
           </Route>
-          <Route path="/login" element={Login} />
+          <Route path="/login" element={<Login />} />
         </Switch>
       </Router>
     </>

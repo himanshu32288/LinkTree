@@ -2,11 +2,11 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useFormik } from "formik";
 import "./LinkCard.css";
 import { useState, useEffect, useRef } from "react";
+import EditButton from "./EditButton";
 
 /*switch material ui inbuild handler */
 const IOSSwitch = styled((props) => (
@@ -119,25 +119,21 @@ const Linkcard = () => {
               onChange={formik.handleChange}
               onBlur={() => setLabelActive(false)}
             />
-            <button
-              className={`label${
-                labelActive ? "-disabled" : "-active"
-              } button-start`}
-              onClick={() => {
-                setLabelActive(true);
-              }}
-            >
-              {formik.values.label}
-            </button>
-            <div className={`label${labelActive ? "-disabled" : "-active"}`}>
-              <EditIcon onClick={() => setLabelActive(true)} />
-            </div>
+            <EditButton
+              type="label"
+              style={{ fontSize: "15px", fontWeight: "600", cursor: "pointer" }}
+              Active={labelActive}
+              value={formik.values.label}
+              setActive={setLabelActive}
+              initial="Title"
+            />
           </div>
           <div className="input-wrapper">
             <input
               type="text"
               placeholder="Enter Link"
               name="link"
+              style={{ fontSize: "40" }}
               ref={linkRef}
               className={`link-input link-input${
                 linkActive ? "-active" : "-disabled"
@@ -148,27 +144,14 @@ const Linkcard = () => {
                 setLinkActive(false);
               }}
             />
-            <button
-              className={`link${
-                linkActive ? "-disabled" : "-active"
-              } button-start`}
-              onClick={() => {
-                setLinkActive(true);
-              }}
-            >
-              {formik.values.link}
-            </button>
-            <div
-              className={`icon-edit link${
-                linkActive ? "-disabled" : "-active"
-              }`}
-            >
-              <EditIcon
-                onClick={() => {
-                  setLinkActive(true);
-                }}
-              />
-            </div>
+            <EditButton
+              type="link"
+              style={{ fontSize: "13px", fontWeight: "600", cursor: "pointer" }}
+              Active={linkActive}
+              value={formik.values.link}
+              initial="Url"
+              setActive={setLinkActive}
+            />
           </div>
         </div>
         <div className="switch">
